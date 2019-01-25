@@ -1,0 +1,6 @@
+Name: <input type="text" [(ngModel)]="name" /> <input type="button" value="Add" (click)="AddHero();"/>
+
+<ul>
+  <li *ngFor="let hero of herolist|async">{{hero.name}}</li>
+</ul>
+
