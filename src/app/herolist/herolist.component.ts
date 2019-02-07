@@ -3,6 +3,7 @@ import {Select, Store} from '@ngxs/store';
 import { HeroState } from './hero.state';
 import { Observable } from 'rxjs';
 import { AddHero } from './hero.action';
+import { Hero } from './hero.model';
 
 @Component({
   selector: 'app-herolist',
@@ -15,14 +16,18 @@ export class HerolistComponent implements OnInit {
 
   name:string;
 
-  @Select(HeroState.herolist) herolist:Observable<string[]>;
+  @Select(HeroState.herolist) herolist:Observable<Hero[]>;
 
   ngOnInit() {
   }
 
   AddHero(){
     if(this.name && this.name.trim()){
-      this.store.dispatch(new AddHero(this.name.trim()));
+      let hero ={
+        name:this.name,
+        age:"27"
+      }
+      this.store.dispatch(new AddHero(hero));
     }
     
   }
